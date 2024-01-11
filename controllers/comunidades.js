@@ -28,9 +28,16 @@ const aniadirPresidenteAComunidad = (req, res) => {
         .then(result => res.status(200).json({ result }))
         .catch(error => res.status(404).json({ Message: 'Comunidad no encontrada' }));
 }
+
+const comprobarVecinoComunidad = (req, res) => {
+    Comunidad.findOne({ vecinos: req.params.id })
+        .then(result => res.status(200).json({ result }))
+        .catch(error => res.status(404).json({ Message: 'Comunidad no encontrada' }));
+}
 module.exports = {
     obtenerComunidades,
     obtenerComunidad,
     crearComunidad,
-    aniadirPresidenteAComunidad
+    aniadirPresidenteAComunidad,
+    comprobarVecinoComunidad
 };
