@@ -32,7 +32,7 @@ const obtenerPresidente = (req, res) => {
 };
 const crearPresidente = (req, res) => {
     Presidente.create(req.body)
-        .then(result => res.status(201).json({ result }))
+        .then(result => res.status(201).json({ code: 201}))
         .catch(error => res.status(406).json({ Message: 'Presidente no creado' }));
 };
 
