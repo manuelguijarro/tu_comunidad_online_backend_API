@@ -56,7 +56,7 @@ const comprobarVecino = (req, res) => {
             if (!result) {
                 res.status(404).json({ Message: 'Vecino no encontrado' });
             } else {
-                res.status(200).json({ result });
+                res.status(200).json({ code : 200 , emailVecino: result.emailVecino });
             }
         });
 };
@@ -66,6 +66,12 @@ const obtenerVecino = (req, res) => {
         .then(result => res.status(200).json({ result }))
         .catch(error => res.status(404).json({ Message: 'Vecino no encontrado' }));
 };
+
+const obtenerVecinoDashboard = (req, res) => {
+    Vecino.findOne({ emailVecino: req.query.email })
+        .then(result => res.status(200).json({ result }))
+        .catch(error => res.status(404).json({ Message: 'Vecino no encontrado' }));
+}
 const obtenerVecinoEmail = (email) => {
     Vecino.findOne({ emailVecino: email })
         .then(result => result)
