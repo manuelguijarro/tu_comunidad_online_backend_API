@@ -21,7 +21,11 @@ const app = express();
 
 
 
-app.use(express.json(),cors({origin:'*'}));
+app.use(express.json(),cors({
+  origin:'https://vecino-conecta-frontend-api.vercel.app/',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  optionsSuccessStatus: 204
+}))
 app.use("/neighbor",vecino_routes);
 
 app.use("/community",comunidad_routes);
