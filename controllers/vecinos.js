@@ -69,7 +69,7 @@ const obtenerVecino = (req, res) => {
 
 const crearVecino = (req, res) => {
     Vecino.create(req.body)
-        .then(result => res.status(201).json({ result }))
+        .then(result => res.status(201).json({ code: 201}))
         .catch(error => res.status(406).json({ Message: 'Vecino no creado' }));
 };
 
