@@ -22,7 +22,7 @@ const app = express();
 
 
 app.use(express.json(),cors({
-  origin:'https://vecino-conecta-frontend-api.vercel.app/',
+  origin:'https://vecino-conecta-backend-api.vercel.app/',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   optionsSuccessStatus: 204
 }))
