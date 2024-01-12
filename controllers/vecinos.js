@@ -91,6 +91,7 @@ module.exports = {
     obtenerVecino,
     crearVecino,
     obtenerVecinos,
-    obtenerVecinoEmail
+    obtenerVecinoEmail,
+    obtenerVecinoDashboard
     /*enviarEmail*/
 };
