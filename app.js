@@ -22,7 +22,7 @@ const app = express();
 
 
 app.use(express.json(),cors({
-  origin:'*',
+  origin: '.*',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   optionsSuccessStatus: 204
 }))
