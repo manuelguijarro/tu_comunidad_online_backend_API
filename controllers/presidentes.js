@@ -1,5 +1,6 @@
 const Presidente = require('../models/Presidente');
-
+const Vecino = require('../models/Vecino');
+const { ObjectId } = require('bson');
 
 const obtenerPresidentes = (req, res) => {
     Presidente.find({})
@@ -30,11 +31,26 @@ const obtenerPresidente = (req, res) => {
         })
         .catch(error => res.status(500).json({ Message: 'Error al buscar el presidente', error }));
 };
-const crearPresidente = (req, res) => {
-    Presidente.create(req.body)
-        .then(result => res.status(201).json({ code: 201}))
-        .catch(error => res.status(406).json({ Message: 'Presidente no creado' }));
+const crearPresidente = async (req, res) => {
+    try {
+        // Crear el Vecino
+        const vecinoResult = await Vecino.create(req.body);
+        const vecino = await Vecino.findOne({ emailVecino: vecinoResult.emailVecino });
+
+        // Crear el Presidente con referencia al Vecino
+        const presidenteResult = await Presidente.create({
+            datos_personales: {
+                _id: new ObjectId(vecino._id),
+            },
+        });
+
+        res.status(201).json({ code: 201 });
+    } catch (error) {
+        console.error(error);
+        res.status(406).json({ Message: 'Presidente no creado' });
+    }
 };
+
 
 
 

@@ -66,7 +66,12 @@ const obtenerVecino = (req, res) => {
         .then(result => res.status(200).json({ result }))
         .catch(error => res.status(404).json({ Message: 'Vecino no encontrado' }));
 };
-
+const obtenerVecinoEmail = (email) => {
+    Vecino.findOne({ emailVecino: email })
+        .then(result => result)
+        .catch(error => res.status(404).json({ Message: 'Vecino no encontrado' }));
+        
+}
 const crearVecino = (req, res) => {
     Vecino.create(req.body)
         .then(result => res.status(201).json({ code: 201}))
@@ -80,5 +85,6 @@ module.exports = {
     obtenerVecino,
     crearVecino,
     obtenerVecinos,
+    obtenerVecinoEmail
     /*enviarEmail*/
 };
